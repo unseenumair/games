@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>TicTacToe - Game</title>
+	<!-- Favicon -->
+	<link rel="icon" href="https://cdn.jsdelivr.net/gh/unseenumair/assets/icons/js.svg">
+	<!-- CSS & Font -->
+	<link rel="stylesheet" href="/styles.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&family=Sigmar&display=swapp">
+	<!-- CDN -->
+	<script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js" defer></script>
+</head>
+<body>
+	<header>
+		<div id="stats">
+			<p>
+				<span class="x">X</span>
+				Player
+			</p>
+			<div id="separator">|</div>
+			<p>
+				<span class="o">O</span>
+				<span style="transform: translateY(-1px);">Player</span>
+			</p>
+		</div>
+		<h1>TicTacToe</h1>
+		<div id="toggleTheme">
+			<iconify-icon id="sun" icon="si:sun-fill"></iconify-icon>
+			<iconify-icon id="moon" icon="bi:moon-stars-fill"></iconify-icon>
+		</div>
+	</header>
+	<main>
+		<section id="gameCont">
+			<div class="box"></div>
+			<div class="box"></div>
+			<div class="box"></div>
+			<div class="box"></div>
+			<div class="box"></div>
+			<div class="box"></div>
+			<div class="box"></div>
+			<div class="box"></div>
+			<div class="box"></div>
+		</section>
+		<section id="buttonCont">
+			<button class="restart">Restart</button>
+		</section>
+	</main>
+	<aside>
+		<iconify-icon id="cross" icon="bitcoin-icons:cross-filled" width="24" height="24"></iconify-icon>
+		<p>🎉 Player <span id="winner"></span> Won!</p>
+		<button class="restart">New Game</button>
+	</aside>
+	<script src="/script.js"></script> 
+</body>
+</html>
