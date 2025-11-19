@@ -8,6 +8,7 @@
 	--h1Col: white;
 	--toggleIconBg: #2addd6;
 	--toggleIconCol: black;
+	--emojiCol: skyblue;
 }
 
 .lightMode {
@@ -17,6 +18,7 @@
 	--xCol: black;
 	--toggleIconBg: white;
 	--toggleIconCol: black;
+	--boxBg: skyblue;
 }
 
 * {
@@ -32,6 +34,8 @@ body {
 	overflow: hidden;
 	background: var(--bodyBg);
 	font-family: "QuickSand", sans-serif;
+	transition: all 0.5s ease 0.05s;
+	user-select: none;
 }
 
 /* Header */
@@ -39,7 +43,7 @@ header {
 	width: 100%;
 	padding: 15px;
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-evenly;
 	align-items: center;
 }
 
@@ -48,6 +52,7 @@ header {
 	justify-content: center;
 	align-items: center;
 	gap: 10px; 
+	transform: scale(0.9); 
 }
 
 #stats p {
@@ -99,14 +104,21 @@ header {
 	font-family: "Sigmar", sans-serif;
 }
 
+.hoverEffect { transition: opacity 0.5s ease 0.05s; }
+.hoverEffect:hover { opacity: 0.7; }
+
 h1 {
 	font-size: 1.5rem;
-	color: var(--h1Col);
 	border-radius: 10px;
 	padding: 7px 10px;
 	background: var(--h1Bg);
 	box-shadow: var(--boxShadow);
 	letter-spacing: 1px;
+}
+
+h1 a {
+	text-decoration: none;
+	color: var(--h1Col);
 }
 
 #toggleTheme {
@@ -122,7 +134,7 @@ h1 {
 }
 
 #sun {
-	font-size: 0; 
+	display: none;
 }
 
 /* gameCont */
@@ -140,6 +152,7 @@ h1 {
 	width: clamp(70px, 20vmax, 100px);
 	height: clamp(70px, 20vmax, 100px);
 	border-radius: 15px;
+	background: var(--boxBg);
 	box-shadow: var(--boxShadow);
 	display: flex;
 	justify-content: center;
@@ -147,6 +160,11 @@ h1 {
 	cursor: pointer;
 }
 
+@keyframes error { /* This Anime is Used in JS */
+	to {
+		background: red;
+	}
+}
 
 /* buttonCont */
 #buttonCont {
@@ -180,27 +198,24 @@ aside {
 	padding: 20px 30px;
 	width: clamp(200px, 80vw, 400px);
 	text-align: center;
-	display: none;
+	display: none; 
 }
 
 aside p {
 	font-weight: bold;
 	font-size: 1.5rem;
 	color: var(--h1Col);
-	margin-bottom: 2%;
+	margin-bottom: 15px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: column;
+	gap: 7px;
 }
 
-#cross {
-	position: absolute;
-	top: 5%;
-	right: 2%;
-	padding: 7px;
-	text-align: center;
-	background: var(--boxBg);
-	color: var(--h1Col);
-	border: 1px solid black;
-	border-radius: 20px; 
-	opacity: 0.7;
-	font-size: 0.8rem;
-	cursor: pointer;
+.emoji { 
+	font-size: 4rem;
+	color: var(--emojiCol); 
 }
+
+#audios { display: none; }

@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>TicTacToe - Game</title>
 	<!-- Favicon -->
-	<link rel="icon" href="https://cdn.jsdelivr.net/gh/unseenumair/assets/icons/js.svg">
+	<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 	<!-- CSS & Font -->
 	<link rel="stylesheet" href="/styles.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&family=Sigmar&display=swapp">
@@ -25,8 +25,8 @@
 				<span style="transform: translateY(-1px);">Player</span>
 			</p>
 		</div>
-		<h1>TicTacToe</h1>
-		<div id="toggleTheme">
+		<h1 class="hoverEffect"><a href="">TicTacToe</a></h1>
+		<div id="toggleTheme" class="hoverEffect">
 			<iconify-icon id="sun" icon="si:sun-fill"></iconify-icon>
 			<iconify-icon id="moon" icon="bi:moon-stars-fill"></iconify-icon>
 		</div>
@@ -44,14 +44,25 @@
 			<div class="box"></div>
 		</section>
 		<section id="buttonCont">
-			<button class="restart">Restart</button>
+			<button class="restart hoverEffect">Restart</button>
 		</section>
 	</main>
 	<aside>
-		<iconify-icon id="cross" icon="bitcoin-icons:cross-filled" width="24" height="24"></iconify-icon>
-		<p>🎉 Player <span id="winner"></span> Won!</p>
-		<button class="restart">New Game</button>
+		<p id="wonMsg"> 
+			<iconify-icon class="emoji" icon="radix-icons:face"></iconify-icon> 
+			<span>🎉 Player <span id="winner"></span> Won!</span> 
+		</p> 
+		<p id="drawMsg"> 
+			<iconify-icon class="emoji" icon="cil:face"></iconify-icon> 
+			⚔ Its a Draw ! 
+		</p>
+		<button class="restart hoverEffect" style="transform: scale(0.9);">New Game</button>
+		<div id="audios">
+			<audio id="ting" src="/assets/ting.mp3" autoplay="false" preload="auto">
+			<audio id="gameOver" src="/assets/gameOver.mp3" autoplay="false" preload="auto">
+			<audio id="won" src="/assets/won.mp3" autoplay="false" preload="none">
+		</div>
 	</aside>
-	<script src="/script.js"></script> 
+	<script src="/script.js"></script>
 </body>
 </html>

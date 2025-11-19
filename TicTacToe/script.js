@@ -2,11 +2,22 @@ console.log("Welcome to TicTacToe!");
 
 const boxes = document.querySelectorAll(".box");
 const aside = document.querySelector("aside");
+const ting = document.querySelector("#ting");
+const gameOver = document.querySelector("#gameOver");
+const won = document.querySelector("#won");
+const wonMsg = document.querySelector("#wonMsg");
+const drawMsg = document.querySelector("#drawMsg");
 
 // Give x or o class
-function giveClass(){
+function giveClass(e){
+	e.innerText === "X" ? e.classList.add("x") : e.classList.add("o");
+}
+
+// Remove x & o classes from Boxes
+function removeClass(){
 	boxes.forEach(e => {
-		e.innerText === "X" ? e.classList.add("x") : e.classList.add("o");
+		e.classList.remove("x");	
+		e.classList.remove("o");	
 	});
 }
 
@@ -48,31 +59,57 @@ function checkWin(){
 			document.querySelector("#winner").innerText = turn;
 			document.querySelector("#winner").className = `${turn.toLowerCase()}`;
 			aside.style.display = "block";
+			drawMsg.style.display = "none";
+			wonMsg.style.display = "flex";
+			won.play(); // Play Won Music
 		}
 	});
 }
 
+// Check Draw
+function checkDraw(){
+	let count = 0;
+	boxes.forEach(e => {
+		if (e.innerText.trim() !== ""){
+			count++;
+		}
+	});
+	
+	if (count === boxes.length){
+		aside.style.display = "block";
+		wonMsg.style.display = "none";
+		drawMsg.style.display = "flex";
+		gameOver.play(); // Play GameOver Music
+	}
+}
 
 boxes.forEach(e => {
 	e.addEventListener("click", ()=>{
 		if (e.innerText === ''){
 			e.innerText = turn;
-			giveClass();
+			giveClass(e);
+			ting.play(); // Play Ting Music
 			checkWin();
 			changeTurn();
+			checkDraw();
+		}
+		else {
+			gameOver.play(); // Play GameOver Music
+			e.style.animation = "error 0.5s ease";
 		}
 	});
 });
-
 
 // Restart Game
 function reset(){
 	boxes.forEach(e => {
 		e.innerText = "";	
 	});
+	removeClass();
 	removeFlash();
 	turn = "X";
 	giveFlash();
+	won.pause(); // Stop Won Music
 }
 
 document.querySelectorAll(".restart").forEach(e => {
@@ -83,9 +120,9 @@ document.querySelectorAll(".restart").forEach(e => {
 });
 
 // Aside
-document.querySelector("#cross").addEventListener("click", ()=>{
-	aside.style.display = "none";
-});
+// document.querySelector("#cross").addEventListener("click", ()=>{
+	// aside.style.display = "none";
+// });
 
 // Toggle Theme
 const sun = document.querySelector("#sun");
