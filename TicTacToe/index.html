@@ -25,7 +25,7 @@
 				<span style="transform: translateY(-1px);">Player</span>
 			</p>
 		</div>
-		<h1 class="hoverEffect"><a href="">TicTacToe</a></h1>
+		<h1 class="hoverEffect"><a href="#">TicTacToe</a></h1>
 		<div id="toggleTheme" class="hoverEffect">
 			<iconify-icon id="sun" icon="si:sun-fill"></iconify-icon>
 			<iconify-icon id="moon" icon="bi:moon-stars-fill"></iconify-icon>
@@ -42,6 +42,7 @@
 			<div class="box"></div>
 			<div class="box"></div>
 			<div class="box"></div>
+			<span id="wonLine">|</span>
 		</section>
 		<section id="buttonCont">
 			<button class="restart hoverEffect">Restart</button>
@@ -51,15 +52,16 @@
 		<p id="wonMsg"> 
 			<iconify-icon class="emoji" icon="radix-icons:face"></iconify-icon> 
 			<span>🎉 Player <span id="winner"></span> Won!</span> 
-		</p> 
+		</p>
 		<p id="drawMsg"> 
 			<iconify-icon class="emoji" icon="cil:face"></iconify-icon> 
 			⚔ Its a Draw ! 
 		</p>
 		<button class="restart hoverEffect" style="transform: scale(0.9);">New Game</button>
-		<div id="audios">
+		<div style="display: none;">
 			<audio id="ting" src="/assets/ting.mp3" autoplay="false" preload="auto">
 			<audio id="gameOver" src="/assets/gameOver.mp3" autoplay="false" preload="auto">
+			<audio id="error" src="/assets/error.mp3" autoplay="false" preload="auto">
 			<audio id="won" src="/assets/won.mp3" autoplay="false" preload="none">
 		</div>
 	</aside>

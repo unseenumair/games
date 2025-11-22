@@ -2,11 +2,16 @@ console.log("Welcome to TicTacToe!");
 
 const boxes = document.querySelectorAll(".box");
 const aside = document.querySelector("aside");
+
+// Sounds
 const ting = document.querySelector("#ting");
 const gameOver = document.querySelector("#gameOver");
+const error = document.querySelector("#error");
 const won = document.querySelector("#won");
+
 const wonMsg = document.querySelector("#wonMsg");
 const drawMsg = document.querySelector("#drawMsg");
+const wonLine = document.querySelector("#wonLine");
 
 // Give x or o class
 function giveClass(e){
@@ -41,27 +46,43 @@ function removeFlash(){
 	document.querySelector(`.${turn.toLowerCase()}`).classList.remove("turn");
 }
 
+// Draw Won Line 
+function drawLine(text, property, value){
+	wonLine.style.width = "90%";
+	
+	if (property === "applyTop"){
+		wonLine.style.top = "55%";
+		wonLine.style.transform = value;
+	}
+	else if (property === "top"){
+		wonLine.style.top = value;
+	}
+}
+
 // Check Win
 function checkWin(){
 	let wins = [
-		[0, 1, 2],
-		[3, 4, 5],
-		[6, 7, 8],
-		[0, 3, 6],
-		[1, 4, 7],
-		[2, 5, 8],
-		[0, 4, 8],
-		[2, 4, 6]
+		[0, 1, 2, "top", "17%"],
+		[3, 4, 5, "top", "55%"],
+		[6, 7, 8, "top", "94%"],
+		[0, 3, 6, "applyTop", "translateX(-42%) rotate(90deg)"],
+		[1, 4, 7, "applyTop", "rotate(90deg)"],
+		[2, 5, 8, "applyTop", "translateX(42%) rotate(90deg)"],
+		[0, 4, 8, "applyTop", "rotate(45deg)"],
+		[2, 4, 6, "applyTop", "rotate(-45deg)"]
 	];
 	
 	wins.forEach(e => {
-		if ((boxes[e[0]].innerText === boxes[e[1]].innerText) && (boxes[e[2]].innerText === boxes[e[1]].innerText) && (boxes[e[0]].innerText !== "")){
+		if ((boxes[e[0]].innerText === boxes[e[1]].innerText) && (boxes[e[0]].innerText === boxes[e[2]].innerText) && (boxes[e[0]].innerText !== "")){
 			document.querySelector("#winner").innerText = turn;
 			document.querySelector("#winner").className = `${turn.toLowerCase()}`;
-			aside.style.display = "block";
-			drawMsg.style.display = "none";
-			wonMsg.style.display = "flex";
-			won.play(); // Play Won Music
+			drawLine(e[0].innerText, e[3], e[4]); // Draw Line
+			setTimeout(()=>{ // Pause for Some Time
+				aside.style.display = "block";
+				drawMsg.style.display = "none";
+				wonMsg.style.display = "flex";
+				won.play(); // Play Won Music
+			}, 700);
 		}
 	});
 }
@@ -76,10 +97,12 @@ function checkDraw(){
 	});
 	
 	if (count === boxes.length){
-		aside.style.display = "block";
-		wonMsg.style.display = "none";
-		drawMsg.style.display = "flex";
-		gameOver.play(); // Play GameOver Music
+		setTimeout(()=>{
+			aside.style.display = "block";
+			wonMsg.style.display = "none";
+			drawMsg.style.display = "flex";
+			gameOver.play(); // Play GameOver Music
+		}, 700);
 	}
 }
 
@@ -94,8 +117,11 @@ boxes.forEach(e => {
 			checkDraw();
 		}
 		else {
-			gameOver.play(); // Play GameOver Music
-			e.style.animation = "error 0.5s ease";
+			error.play(); // Play Error Music
+			e.style.animation = "error 0.3s linear";
+			setTimeout(()=>{
+				e.removeAttribute("style");
+			}, 300);
 		}
 	});
 });
@@ -105,6 +131,7 @@ function reset(){
 	boxes.forEach(e => {
 		e.innerText = "";	
 	});
+	wonLine.removeAttribute("style");
 	removeClass();
 	removeFlash();
 	turn = "X";
@@ -114,15 +141,13 @@ function reset(){
 
 document.querySelectorAll(".restart").forEach(e => {
 	e.addEventListener("click", () => {
-		reset();
-		aside.style.display = "none";
+		setTimeout(()=>{
+			reset();
+			aside.style.display = "none";
+		}, 300);
 	});
 });
 
-// Aside
-// document.querySelector("#cross").addEventListener("click", ()=>{
-	// aside.style.display = "none";
-// });
 
 // Toggle Theme
 const sun = document.querySelector("#sun");
@@ -133,12 +158,12 @@ document.querySelector("#toggleTheme").addEventListener("click", ()=>{
 	let mode = document.body.className;
 
 	if (mode === "lightMode"){
-		moon.style.display = "none";
-		sun.style.display = "block";
+		moon.style.fontSize = "0";
+		sun.style.fontSize = "1.5rem";
 	}
 
 	else {
-		sun.style.display = "none";
-		moon.style.display = "block";
+		sun.style.fontSize = "0";
+		moon.style.fontSize = "1.5rem";
 	}
 });

@@ -19,6 +19,7 @@
 	--toggleIconBg: white;
 	--toggleIconCol: black;
 	--boxBg: skyblue;
+	--emojiCol: black;
 }
 
 * {
@@ -45,6 +46,7 @@ header {
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
+	transform: translateX(-15px);
 }
 
 #stats {
@@ -133,19 +135,20 @@ h1 a {
 	cursor: pointer;
 }
 
-#sun {
-	display: none;
-}
+#sun,
+#moon { transition: font-size 0.5s ease 0.05s; }
+
+#sun { font-size: 0; }
 
 /* gameCont */
 #gameCont {
 	width: fit-content; 
-	padding: 20px;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-rows: repeat(3, 1fr);
 	gap: 5%;
-	margin-inline: auto;
+	margin: 15px auto;
+	position: relative;
 }
 
 .box {
@@ -166,9 +169,22 @@ h1 a {
 	}
 }
 
+/* Won Line on Boxes */
+#wonLine {
+	font-size: 0;
+	position: absolute;
+	left: 10%;
+	z-index: 10;
+	width: 0;
+	height: 5px;
+	border-radius: 50px;
+	transition: width 0.3s ease 0.05s;
+	background: linear-gradient(45deg, var(--xCol), var(--oCol));
+}
+
 /* buttonCont */
 #buttonCont {
-	margin-block: 7%;
+	margin-top: 70px;
 	width: 100%;
 	text-align: center;
 }
@@ -184,6 +200,7 @@ h1 a {
 	font-size: 1rem;
 	letter-spacing: 1px;
 	cursor: pointer;
+	transform: translateX(17px);
 }
 
 /* Aside */
@@ -217,5 +234,3 @@ aside p {
 	font-size: 4rem;
 	color: var(--emojiCol); 
 }
-
-#audios { display: none; }
