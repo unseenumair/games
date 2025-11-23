@@ -9,9 +9,15 @@ const gameOver = document.querySelector("#gameOver");
 const error = document.querySelector("#error");
 const won = document.querySelector("#won");
 
+function playMusic(music){
+	music.currentTime = 0; // Refresh Music
+	music.play(); // Play Music
+}
+
 const wonMsg = document.querySelector("#wonMsg");
 const drawMsg = document.querySelector("#drawMsg");
 const wonLine = document.querySelector("#wonLine");
+let isGameOver = false;
 
 // Give x or o class
 function giveClass(e){
@@ -21,7 +27,7 @@ function giveClass(e){
 // Remove x & o classes from Boxes
 function removeClass(){
 	boxes.forEach(e => {
-		e.classList.remove("x");	
+		e.classList.remove("x");
 		e.classList.remove("o");	
 	});
 }
@@ -74,6 +80,7 @@ function checkWin(){
 	
 	wins.forEach(e => {
 		if ((boxes[e[0]].innerText === boxes[e[1]].innerText) && (boxes[e[0]].innerText === boxes[e[2]].innerText) && (boxes[e[0]].innerText !== "")){
+			isGameOver = true;
 			document.querySelector("#winner").innerText = turn;
 			document.querySelector("#winner").className = `${turn.toLowerCase()}`;
 			drawLine(e[0].innerText, e[3], e[4]); // Draw Line
@@ -81,7 +88,7 @@ function checkWin(){
 				aside.style.display = "block";
 				drawMsg.style.display = "none";
 				wonMsg.style.display = "flex";
-				won.play(); // Play Won Music
+				playMusic(won); // Play Won Music
 			}, 700);
 		}
 	});
@@ -101,8 +108,8 @@ function checkDraw(){
 			aside.style.display = "block";
 			wonMsg.style.display = "none";
 			drawMsg.style.display = "flex";
-			gameOver.play(); // Play GameOver Music
-		}, 700);
+			playMusic(gameOver); // Play GameOver Music
+		}, 500);
 	}
 }
 
@@ -111,13 +118,15 @@ boxes.forEach(e => {
 		if (e.innerText === ''){
 			e.innerText = turn;
 			giveClass(e);
-			ting.play(); // Play Ting Music
+			playMusic(ting); // Play Ting Music
 			checkWin();
 			changeTurn();
-			checkDraw();
+			if (isGameOver === false){
+				checkDraw();
+			}
 		}
 		else {
-			error.play(); // Play Error Music
+			playMusic(error); // Play Error Music
 			e.style.animation = "error 0.3s linear";
 			setTimeout(()=>{
 				e.removeAttribute("style");
@@ -136,7 +145,7 @@ function reset(){
 	removeFlash();
 	turn = "X";
 	giveFlash();
-	won.pause(); // Stop Won Music
+	won.pause(); // Pause Won Music
 }
 
 document.querySelectorAll(".restart").forEach(e => {
@@ -147,7 +156,6 @@ document.querySelectorAll(".restart").forEach(e => {
 		}, 300);
 	});
 });
-
 
 // Toggle Theme
 const sun = document.querySelector("#sun");
