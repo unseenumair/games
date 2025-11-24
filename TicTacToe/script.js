@@ -91,6 +91,9 @@ function checkWin(){
 				playMusic(won); // Play Won Music
 			}, 700);
 		}
+		else {
+			checkDraw();
+		}
 	});
 }
 

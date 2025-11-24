@@ -1,70 +1,104 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>TicTacToe - Game</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Play a fast, responsive 2-Player Tic Tac Toe game with sound effects, theme toggle, and smooth animations. Enjoy classic gameplay on any device.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://us-tictactoe.netlify.app/">
+    <title>Play Tic Tac Toe Online - Free Interactive Game</title>
+
 	<!-- Favicon -->
 	<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+
 	<!-- CSS & Font -->
+	<link rel="preload" href="/styles.css" as="style">
 	<link rel="stylesheet" href="/styles.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&family=Sigmar&display=swapp">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&family=Quicksand:wght@300..700&family=Sigmar&display=swap">
+
 	<!-- CDN -->
 	<script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js" defer></script>
+
+	<!-- OG-Tags -->
+	<meta property="og:title" content="Play Tic Tac Toe Online - Free Interactive Game">
+	<meta property="og:description" content="Enjoy a clean and fast 2-Player Tic Tac Toe game with sound effects and theme options.">
+	<meta property="og:type" content="website">
+	<meta property="og:image" content="/assets/preview.png">
+	<meta property="og:image:alt" content="Tic Tac Toe game preview">
+	<meta property="og:url" content="https://us-tictactoe.netlify.app/">
+
+	<!-- JSON-LD -->
+	<script type="application/ld+json">
+	{
+  	"@context": "https://schema.org",
+  	"@type": "VideoGame",
+  	"name": "Tic Tac Toe",
+  	"url": "https://us-tictactoe.netlify.app/",
+  	"image": "/assets/preview.png",
+  	"author": {
+    	"@type": "Person",
+    	"name": "Unseen Umair"
+  	},
+  	"genre": "Puzzle",
+  	"applicationCategory": "Game"
+	}
+	</script>
 </head>
 <body>
-	<header>
-		<div id="stats">
-			<p>
-				<span class="x">X</span>
-				Player
-			</p>
-			<div id="separator">|</div>
-			<p>
-				<span class="o">O</span>
-				<span style="transform: translateY(-1px);">Player</span>
-			</p>
-		</div>
-		<h1 class="hoverEffect"><a href="#">TicTacToe</a></h1>
-		<div id="toggleTheme" class="hoverEffect">
-			<iconify-icon id="sun" icon="si:sun-fill"></iconify-icon>
-			<iconify-icon id="moon" icon="bi:moon-stars-fill"></iconify-icon>
-		</div>
-	</header>
-	<main>
-		<section id="gameCont">
-			<div class="box"></div>
-			<div class="box"></div>
-			<div class="box"></div>
-			<div class="box"></div>
-			<div class="box"></div>
-			<div class="box"></div>
-			<div class="box"></div>
-			<div class="box"></div>
-			<div class="box"></div>
-			<span id="wonLine">|</span>
-		</section>
-		<section id="buttonCont">
-			<button class="restart hoverEffect">Restart</button>
-		</section>
-	</main>
-	<aside>
-		<p id="wonMsg"> 
-			<iconify-icon class="emoji" icon="radix-icons:face"></iconify-icon> 
-			<span>🎉 Player <span id="winner"></span> Won!</span> 
-		</p>
-		<p id="drawMsg"> 
-			<iconify-icon class="emoji" icon="cil:face"></iconify-icon> 
-			⚔ Its a Draw ! 
-		</p>
-		<button class="restart hoverEffect" style="transform: scale(0.9);">New Game</button>
-		<div style="display: none;">
-			<audio id="ting" src="/assets/ting.mp3" autoplay="false" preload="auto"></audio>
-			<audio id="gameOver" src="/assets/gameOver.mp3" autoplay="false" preload="auto"></audio>
-			<audio id="error" src="/assets/error.mp3" autoplay="false" preload="auto"></audio>
-			<audio id="won" src="/assets/won.mp3" autoplay="false" preload="none"></audio>
-		</div>
-	</aside>
-	<script src="/script.js"></script>
+    <header>
+        <div id="stats">
+            <p>
+                <span class="x">X</span>
+                Player
+            </p>
+            <div id="separator">|</div>
+            <p>
+                <span class="o">O</span>
+                <span style="transform: translateY(-1px);">Player</span>
+            </p>
+        </div>
+        <h1 class="hoverEffect"><a href="/" aria-label="TicTacToe Home">TicTacToe</a></h1>
+        <div id="toggleTheme" class="hoverEffect">
+            <iconify-icon id="sun" icon="si:sun-fill"></iconify-icon>
+            <iconify-icon id="moon" icon="bi:moon-stars-fill"></iconify-icon>
+        </div>
+    </header><main>
+    <section id="gameCont">
+        <div role="button" aria-label="Game Cell" class="box"></div>
+        <div role="button" aria-label="Game Cell" class="box"></div>
+        <div role="button" aria-label="Game Cell" class="box"></div>
+        <div role="button" aria-label="Game Cell" class="box"></div>
+        <div role="button" aria-label="Game Cell" class="box"></div>
+        <div role="button" aria-label="Game Cell" class="box"></div>
+        <div role="button" aria-label="Game Cell" class="box"></div>
+        <div role="button" aria-label="Game Cell" class="box"></div>
+        <div role="button" aria-label="Game Cell" class="box"></div>
+        <span id="wonLine">|</span>
+    </section>
+
+    <section id="buttonCont">
+        <button class="restart hoverEffect">Restart</button>
+    </section>
+</main>
+
+<aside>
+    <p id="wonMsg">
+        <iconify-icon class="emoji" icon="radix-icons:face"></iconify-icon>
+        <span>🎉 Player <span id="winner"></span> Won!</span>
+    </p>
+    <p id="drawMsg">
+        <iconify-icon class="emoji" icon="cil:face"></iconify-icon>
+        ⚔ Its a Draw !
+    </p>
+    <button class="restart hoverEffect" style="transform: scale(0.9);">New Game</button>
+    <div style="display: none;">
+        <audio id="ting" src="/assets/ting.mp3" autoplay="false" preload="auto"></audio>
+        <audio id="gameOver" src="/assets/gameOver.mp3" autoplay="false" preload="auto"></audio>
+        <audio id="error" src="/assets/error.mp3" autoplay="false" preload="auto"></audio>
+        <audio id="won" src="/assets/won.mp3" autoplay="false" preload="none"></audio>
+    </div>
+</aside>
+
+<script src="/script.js"></script>
+
 </body>
 </html>
